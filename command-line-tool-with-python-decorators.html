@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>Haoming's Console</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+        <!-- havicon, path to favicons ref: https://favicon.io/favicon-converter/ -->
+        <link rel="apple-touch-icon" sizes="180x180" href="https://haomingyin.com/images/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://haomingyin.com/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://haomingyin.com/images/favicon/favicon-16x16.png">
+        <link rel="manifest" href="https://haomingyin.com/images/favicon/site.webmanifest">
+        <!-- twitter card metadata -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://haomingyin.com/images/profile.png">
+<meta name="twitter:site" content="">
+<meta name="twitter:title" content="How to use Python decorators to write a command line execution tool">
+<meta name="twitter:description" content="">
+        <!-- OG Tags -->
+<meta property="og:url" content="https://haomingyin.com/command-line-tool-with-python-decorators.html"/>
+<meta property="og:title" content="Haoming's Console | How to use Python decorators to write a command line execution tool" />
+<meta property="og:description" content="" />
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="https://haomingyin.com/images/favicon">
+        <!-- moment.js for date formatting -->
+        <script src="https://haomingyin.com/theme/js/moment.js"></script>
+        <!-- css -->
+        <link rel="stylesheet" type="text/css" href="https://haomingyin.com/theme/css/main.css" />
+		<script>
+			
+                /*! grunt-grunticon Stylesheet Loader - v2.1.2 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+    
+    (function(e){function t(t,n,r,o){"use strict";function a(){for(var e,n=0;u.length>n;n++)u[n].href&&u[n].href.indexOf(t)>-1&&(e=!0);e?i.media=r||"all":setTimeout(a)}var i=e.document.createElement("link"),l=n||e.document.getElementsByTagName("script")[0],u=e.document.styleSheets;return i.rel="stylesheet",i.href=t,i.media="only x",i.onload=o||null,l.parentNode.insertBefore(i,l),a(),i}var n=function(r,o){"use strict";if(r&&3===r.length){var a=e.navigator,i=e.Image,l=!(!document.createElementNS||!document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||e.opera&&-1===a.userAgent.indexOf("Chrome")||-1!==a.userAgent.indexOf("Series40")),u=new i;u.onerror=function(){n.method="png",n.href=r[2],t(r[2])},u.onload=function(){var e=1===u.width&&1===u.height,a=r[e&&l?0:e?1:2];n.method=e&&l?"svg":e?"datapng":"png",n.href=a,t(a,null,null,o)},u.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",document.documentElement.className+=" grunticon"}};n.loadCSS=t,e.grunticon=n})(this);(function(e,t){"use strict";var n=t.document,r="grunticon:",o=function(e){if(n.attachEvent?"complete"===n.readyState:"loading"!==n.readyState)e();else{var t=!1;n.addEventListener("readystatechange",function(){t||(t=!0,e())},!1)}},a=function(e){return t.document.querySelector('link[href$="'+e+'"]')},c=function(e){var t,n,o,a,c,i,u={};if(t=e.sheet,!t)return u;n=t.cssRules?t.cssRules:t.rules;for(var l=0;n.length>l;l++)o=n[l].cssText,a=r+n[l].selectorText,c=o.split(");")[0].match(/US\-ASCII\,([^"']+)/),c&&c[1]&&(i=decodeURIComponent(c[1]),u[a]=i);return u},i=function(e){var t,o,a;o="data-grunticon-embed";for(var c in e)if(a=c.slice(r.length),t=n.querySelectorAll(a+"["+o+"]"),t.length)for(var i=0;t.length>i;i++)t[i].innerHTML=e[c],t[i].style.backgroundImage="none",t[i].removeAttribute(o);return t},u=function(t){"svg"===e.method&&o(function(){i(c(a(e.href))),"function"==typeof t&&t()})};e.embedIcons=i,e.getCSS=a,e.getIcons=c,e.ready=o,e.svgLoadedCallback=u,e.embedSVG=u})(grunticon,this);
+                
+                grunticon(["https://haomingyin.com/theme/css/icons.data.svg.css", "https://haomingyin.com/theme/css/icons.data.png.css", "https://haomingyin.com/theme/css/icons.fallback.css"]);
+            </script>
+        <noscript><link href="https://haomingyin.com/theme/css/icons.fallback.css" rel="stylesheet"></noscript>
+        <!-- menu toggle javascript -->
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", initMenu);
+            
+            function initMenu(){
+                var menu = document.getElementById("menu");
+                var menulink = document.getElementById("menu-link");
+                menulink.addEventListener("click", function toggleMenu(){
+                        window.event.preventDefault();
+                        menulink.classList.toggle('active');
+                        menu.classList.toggle('active');              
+                    });
+            };
+        </script>
+
+
+    <meta name="tags" content="Python" />
+
+</head>
+<body>
+    <div role="banner" id="masthead">
+        <header>
+            <a href="/"><img src="https://haomingyin.com/images/profile.png" alt="Haoming Logo"></a>
+            <a href="#menu" id="menu-link">more stuff</a>
+            <nav id="menu">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                        <li><a href="/tags">Tags</a></li>
+                            <li class="active"><a href="https://haomingyin.com/category/python.html">Python</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+        <div class="page" role="main">
+  <div class="article" role="article">
+    <article>
+        <header>
+          <h2>
+            How to use Python decorators to write a command line execution tool
+          </h2>
+        </header>
+        <footer>
+            <a name="top"></a>
+            <p>
+              <time datetime=" 2019-02-28 02:54:00+13:00">
+                <script>document.write(moment('2019-02-28 02:54:00+13:00').format('LL'));</script>
+              </time>
+            </p>
+        </footer>
+      <div class="content">
+         <h2>Hmm, decorators?</h2>
+<p>Decorator pattern is one of those well-known design patterns that I learned from University. It magically wraps your functions or classes and adds behaviors on top of them. Think about how much you can do with a LCD screen. Decorating it with a CPU and remote, it becomes a TV. Topping up with an antenna, and battery, it becomes a mobile phone. But what the screen essentially does is still displaying content. Decorators don't change the behaviors of their components but extend their capabilities and add extra functionalities.</p>
+<p>Today, I'm going to demonstrate some examples of how I've used decorators to build a simplified command line processor. </p>
+<h2>Basic usage of decorator</h2>
+<p>Firstly, we are going to start with writing a decorator "after_execution" that simply prints any output from it decoratees (I know it's not a word, but you get the idea) .</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="k">def</span> <span class="nf">after_execution</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Executed a command!</span><span class="se">\n</span><span class="s2">... </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nd">@after_execution</span>
+<span class="k">def</span> <span class="nf">execute_command</span><span class="p">(</span><span class="n">command_name</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">command_name</span> <span class="o">==</span> <span class="s2">&quot;gun&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;puh&quot;</span>
+    <span class="k">elif</span> <span class="n">command_name</span> <span class="o">==</span> <span class="s2">&quot;grenade&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;boom&quot;</span>
+    <span class="k">elif</span> <span class="n">command_name</span> <span class="o">==</span> <span class="s2">&quot;exit&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">exit</span><span class="p">()</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">execute_command</span><span class="p">(</span><span class="s2">&quot;grenade&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Let us break up the code above line by line,</p>
+<p>Line 1: import functools built-in module in Python that helps us to create decorators.</p>
+<p>Line 3 &amp; 10:  We defined a function decorator called "after_execution". It takes a function as an argument, wraps it and returns the wrapped function.</p>
+<p>Line 4 - 5: By using functools.wraps, we defined the wrapper which is the actual part that decorates functions. The wrapper can takes unlimited positional arguments and named arguments as we (pretend that) don't know what arguments the decoratee function – which is func, takes.</p>
+<p>Line 6 - 8: The wrapper invokes the func and prints its outputs. It also returns whatever the func has returned so that we don't alter its behavior in terms of output values.</p>
+<p>Line 10: After decorator finishes decorating the function, we return the wrapper,  so that other decorators can further decorate on top of them.</p>
+<p>Line 12 - 13: Defines function execute_command and decorates it with after_execution decorator.</p>
+<p>Line 14 - 19: Obviously, it's the logic of execute_command that decorator doesn't need to care about.</p>
+<p>The output of the above script would then be,</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">Executed</span> <span class="n">a</span> <span class="n">command</span><span class="err">!</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="o">...</span> <span class="n">boom</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">boom</span>
+</code></pre></div>
+
+
+<p>Hooray, we have decorated the command executor! We also have separated the concerns of different functions. The command executor doesn't need to know what would happen after executing the command. Also, the decorator doesn't have to worry about how commands are being executed. 
+Decorators with arguments</p>
+<p>For now, the command executor needs to catalog commands and processes them differently. However, ideally, the job should be done by the decorator. What a executor only needs to know is executing one command. We then could have as many as executors we want, and let command decorator handle the rest.</p>
+<p>To achieve that, we need to add arguments on our decorator and decorate executors accordingly.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="n">COMMANDS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">command</span><span class="p">(</span><span class="n">command_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_command</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Executed a command!</span><span class="se">\n</span><span class="s2">... </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">output</span>
+
+        <span class="n">COMMANDS</span><span class="p">[</span><span class="n">command_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">wrapper</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+
+    <span class="k">return</span> <span class="n">_command</span>
+
+<span class="nd">@command</span><span class="p">(</span><span class="s2">&quot;gun&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">execute_gun</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;puh&quot;</span>
+
+<span class="nd">@command</span><span class="p">(</span><span class="s2">&quot;grenade&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">execute_grenade</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;boom&quot;</span>
+
+<span class="nd">@command</span><span class="p">(</span><span class="s2">&quot;exit&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">execute_exit</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">exit</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">operation_center</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">command_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter the command: &quot;</span><span class="p">)</span>
+        <span class="n">COMMANDS</span><span class="p">[</span><span class="n">command_name</span><span class="p">]()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">operation_center</span><span class="p">()</span>
+</code></pre></div>
+
+
+<p>The code is very similar to the old code, except there is an extra layer being added in command decorator. </p>
+<p>Line 5 - 11: Decorator command takes one positional argument command_name, and it wraps the previous after_execution decorator.</p>
+<p>Line 13: Registers command within the global variable COMMANDS. Command name as key and the wrapper function as value.</p>
+<p>Line 14 &amp; 16: Returns decorator functions for each layer.</p>
+<p>Now, we have separated our monolith executor to two "micro" executors. COMMANDS global variables acts as an operator in operation center to dispatch commands according to input values. </p>
+<p>Now, when we run the script with input grenade, gun and exit the output will be,</p>
+<div class="highlight"><pre><span></span><code><span class="n">Please</span> <span class="n">enter</span> <span class="n">the</span> <span class="n">command</span><span class="p">:</span> <span class="n">gun</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Executed</span> <span class="n">a</span> <span class="n">command</span><span class="err">!</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="o">...</span> <span class="n">puh</span>
+<span class="n">Please</span> <span class="n">enter</span> <span class="n">the</span> <span class="n">command</span><span class="p">:</span> <span class="n">grenade</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Executed</span> <span class="n">a</span> <span class="n">command</span><span class="err">!</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="o">...</span> <span class="n">boom</span>
+<span class="n">Please</span> <span class="n">enter</span> <span class="n">the</span> <span class="n">command</span><span class="p">:</span> <span class="n">exit</span>
+</code></pre></div>
+
+
+<h2>Summary</h2>
+<p>With decorators, it saves us from repeating ourself and separate the concerns of different functions. The decorator pattern has also been applied everywhere even though you might not be aware of. </p>
+<p>Of course, if you do need a command-line like task execution tool, you don't have to rebuild the wheels. Try Python Invoke which is an amazing tool that I have been using a lot. Actually, it has inspired me to write my own command execution engine and this blog as well.</p>
+<p>I'm a fan of all kinds of ChatOps. I have written a GitBot at work, which use exactly the same pattern above to consume commands and arguments to process pull requests comments. But I have to admit that sometimes it's really brain hurting to read the implementation of decorators as there are so many layers going on. Make sure you have documented your code properly! Happy hacking!</p>
+      </div>
+      <div class="back-to-top">
+          <a href="#top">back to top</a>
+      </div>
+      <div id="disqus_thread"></div>
+        <script>
+          var disqus_config = function () {
+          this.page.url = "https://haomingyin.com/command-line-tool-with-python-decorators.html";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "command-line-tool-with-python-decorators"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+        </script>
+        <script>
+        (function() {
+              var d = document, s = d.createElement('script');
+              s.src = 'https://haomingyin.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </article>
+  </div>
+<!-- end article -->
+                <footer>
+                    <div class="icons">
+                        <a href="https://github.com/haomingyin" target="_blank"><div class="icon-github icon"></div></a>
+                    </div>
+                    <p>© <script>document.write(moment().format('YYYY'));</script> Haoming Yin</p>
+                </footer>
+        </div>
+</body>
+</html>
